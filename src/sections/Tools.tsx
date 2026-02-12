@@ -14,7 +14,6 @@ import {
   LineChart,
   Hammer
 } from 'lucide-react'
-import { Button } from '@/components/ui/button'
 import { useLanguage } from '@/context/LanguageContext'
 
 const Tools = () => {
