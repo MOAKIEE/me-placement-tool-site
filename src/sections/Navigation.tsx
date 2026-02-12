@@ -104,10 +104,10 @@ const Navigation = () => {
         {isMobileMenuOpen && (
           <>
             <div
-              className="fixed inset-0 bg-black/50 backdrop-blur-sm z-40 md:hidden"
+              className="fixed inset-0 bg-black/50 backdrop-blur-sm z-30 md:hidden"
               onClick={() => setIsMobileMenuOpen(false)}
             />
-            <div className="fixed inset-x-0 top-16 bottom-0 bg-background z-50 md:hidden overflow-y-auto">
+            <div className="fixed inset-x-0 top-16 bottom-0 bg-background z-40 md:hidden overflow-y-auto">
               <div className="max-w-7xl mx-auto px-4 py-6">
                 <div className="flex flex-col gap-4">
                   <button
