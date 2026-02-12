@@ -1,105 +1,76 @@
-import { ArrowDown, Blocks, Zap, Network } from 'lucide-react'
-import { Button } from '@/components/ui/button'
+import { ArrowDown, Blocks, Zap, Network, Download } from 'lucide-react'
 import { useLanguage } from '@/context/LanguageContext'
 
 const Hero = () => {
   const { t } = useLanguage()
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-hero grid-pattern">
-      {/* Background Effects */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl animate-pulse-glow" />
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse-glow" style={{ animationDelay: '1s' }} />
-      </div>
-
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32">
-        <div className="text-center">
+    <section className="relative pt-32 pb-20 overflow-hidden bg-grid min-h-[90vh] flex items-center">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+        <div className="flex flex-col items-center text-center max-w-4xl mx-auto">
           {/* Badge */}
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass mb-8 animate-slide-up">
-            <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-            <span className="text-sm text-muted-foreground">{t.hero.badge}</span>
+          <div className="mb-8 inline-flex items-center gap-2 neo-badge bg-white">
+            <span className="w-2 h-2 bg-green-500 rounded-none animate-pulse" />
+            <span className="text-sm font-bold tracking-wide uppercase">
+              {t.hero.badge}
+            </span>
           </div>
 
           {/* Title */}
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 animate-slide-up" style={{ animationDelay: '0.1s' }}>
-            <span className="text-gradient">{t.hero.title}</span>
+          <h1 className="text-5xl md:text-7xl font-extrabold text-slate-900 tracking-tight mb-8 leading-tight uppercase">
+            ME <span className="bg-slate-900 text-white px-2 inline-block skew-x-[-10deg]">Placement</span> Tool
           </h1>
 
           {/* Subtitle */}
-          <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto mb-8 animate-slide-up" style={{ animationDelay: '0.2s' }}>
+          <p className="text-xl text-slate-900 mb-10 max-w-2xl font-medium leading-relaxed border-l-4 border-slate-900 pl-6 text-left mx-auto bg-white/50 backdrop-blur-sm p-4">
             {t.hero.subtitle}
           </p>
 
-          {/* Stats */}
-          <div className="flex flex-wrap justify-center gap-8 mb-10 animate-slide-up" style={{ animationDelay: '0.3s' }}>
-            <div className="flex items-center gap-2 text-muted-foreground">
-              <Blocks className="w-5 h-5 text-cyan-500" />
-              <span className="text-sm">{t.hero.stat1}</span>
-            </div>
-            <div className="flex items-center gap-2 text-muted-foreground">
-              <Network className="w-5 h-5 text-purple-500" />
-              <span className="text-sm">{t.hero.stat2}</span>
-            </div>
-            <div className="flex items-center gap-2 text-muted-foreground">
-              <Zap className="w-5 h-5 text-yellow-500" />
-              <span className="text-sm">{t.hero.stat3}</span>
-            </div>
-          </div>
-
           {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center animate-slide-up" style={{ animationDelay: '0.4s' }}>
-            <Button
-              size="lg"
-              asChild
-              className="bg-gradient-to-r from-cyan-500 to-cyan-600 hover:from-cyan-400 hover:to-cyan-500 text-white px-8"
+          <div className="flex flex-col sm:flex-row gap-6 w-full sm:w-auto">
+            <a
+              href="#download"
+              className="neo-btn-primary flex items-center justify-center gap-2 text-lg uppercase tracking-wide group"
             >
-              <a href="#download">
-                {t.hero.ctaDownload}
-                <ArrowDown className="w-4 h-4 ml-2" />
-              </a>
-            </Button>
-            <Button
-              size="lg"
-              variant="outline"
-              asChild
-              className="border-border/50 hover:bg-secondary"
+              <Download className="w-5 h-5 group-hover:animate-bounce" />
+              {t.hero.ctaDownload}
+            </a>
+            <a
+              href="#features"
+              className="neo-btn flex items-center justify-center gap-2 text-lg uppercase tracking-wide group"
             >
-              <a href="#features">{t.hero.ctaLearn}</a>
-            </Button>
+              {t.hero.ctaLearn}
+              <ArrowDown className="w-5 h-5 group-hover:translate-y-1 transition-transform" />
+            </a>
           </div>
 
-          {/* Tool Preview Cards */}
-          <div className="mt-20 grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto animate-slide-up" style={{ animationDelay: '0.5s' }}>
-            <div className="glass rounded-xl p-6 hover-lift border-glow">
-              <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-cyan-500/20 to-cyan-600/20 flex items-center justify-center mb-4 mx-auto">
-                <Blocks className="w-6 h-6 text-cyan-400" />
+          {/* Stats */}
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-20 w-full text-left">
+            {[
+              { icon: Blocks, text: t.hero.stat1, sub: "Placement / Multiblock" },
+              { icon: Network, text: t.hero.stat2, sub: "Direct Integration" },
+              { icon: Zap, text: t.hero.stat3, sub: "One-Click Operation" },
+            ].map((stat, index) => (
+              <div key={index} className="neo-card p-6 flex flex-col items-start gap-4 bg-white relative overflow-hidden group">
+                <div className="absolute top-0 right-0 p-2 opacity-10 group-hover:opacity-20 transition-opacity">
+                  <stat.icon className="w-24 h-24 text-slate-900 rotate-[-15deg]" />
+                </div>
+                <div className="w-12 h-12 bg-slate-900 text-white flex items-center justify-center border-2 border-slate-900 shadow-hard-sm">
+                  <stat.icon className="w-6 h-6" />
+                </div>
+                <div className="relative z-10">
+                  <h3 className="font-extrabold text-lg text-slate-900 uppercase tracking-tight">{stat.text}</h3>
+                  <p className="text-slate-600 text-sm font-bold mt-1">{stat.sub}</p>
+                </div>
               </div>
-              <h3 className="font-semibold text-foreground mb-2">{t.hero.tool1Title}</h3>
-              <p className="text-sm text-muted-foreground">{t.hero.tool1Desc}</p>
-            </div>
-            <div className="glass rounded-xl p-6 hover-lift border-glow">
-              <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-purple-500/20 to-purple-600/20 flex items-center justify-center mb-4 mx-auto">
-                <Network className="w-6 h-6 text-purple-400" />
-              </div>
-              <h3 className="font-semibold text-foreground mb-2">{t.hero.tool2Title}</h3>
-              <p className="text-sm text-muted-foreground">{t.hero.tool2Desc}</p>
-            </div>
-            <div className="glass rounded-xl p-6 hover-lift border-glow">
-              <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-green-500/20 to-green-600/20 flex items-center justify-center mb-4 mx-auto">
-                <Zap className="w-6 h-6 text-green-400" />
-              </div>
-              <h3 className="font-semibold text-foreground mb-2">{t.hero.tool3Title}</h3>
-              <p className="text-sm text-muted-foreground">{t.hero.tool3Desc}</p>
-            </div>
+            ))}
           </div>
         </div>
       </div>
 
-      {/* Scroll Indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
-        <ArrowDown className="w-5 h-5 text-muted-foreground" />
-      </div>
+      {/* Decorative Elements */}
+      <div className="absolute top-1/4 -right-12 w-48 h-48 border-4 border-slate-900 opacity-10 rotate-12 bg-slate-200" />
+      <div className="absolute bottom-1/4 -left-12 w-32 h-32 border-4 border-slate-900 opacity-10 -rotate-6 bg-slate-300" />
     </section>
   )
 }

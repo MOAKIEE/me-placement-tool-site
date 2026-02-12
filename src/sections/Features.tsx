@@ -1,12 +1,11 @@
-import { 
-  Layers, 
-  RotateCcw, 
-  Palette, 
-  Wand2, 
-  Settings2, 
+import {
+  Layers,
+  RotateCcw,
+  Palette,
+  Wand2,
+  Settings2,
   Cpu,
-  CheckCircle2,
-  MousePointerClick
+  CheckCircle2
 } from 'lucide-react'
 import { useLanguage } from '@/context/LanguageContext'
 
@@ -18,38 +17,32 @@ const Features = () => {
       icon: Layers,
       title: t.features.feat1Title,
       description: t.features.feat1Desc,
-      color: 'cyan'
     },
     {
       icon: RotateCcw,
       title: t.features.feat2Title,
       description: t.features.feat2Desc,
-      color: 'purple'
     },
     {
       icon: Palette,
       title: t.features.feat3Title,
       description: t.features.feat3Desc,
-      color: 'green'
     },
     {
       icon: Wand2,
       title: t.features.feat4Title,
       description: t.features.feat4Desc,
-      color: 'cyan'
     },
     {
       icon: Settings2,
       title: t.features.feat5Title,
       description: t.features.feat5Desc,
-      color: 'purple'
     },
     {
       icon: Cpu,
       title: t.features.feat6Title,
       description: t.features.feat6Desc,
-      color: 'green'
-    }
+    },
   ]
 
   const highlights = [
@@ -62,66 +55,79 @@ const Features = () => {
   ]
 
   return (
-    <section id="features" className="py-24 bg-background relative">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 grid-pattern opacity-50" />
-      
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
-        <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 mb-4">
-            <MousePointerClick className="w-4 h-4 text-cyan-500" />
-            <span className="text-sm text-cyan-400">{t.features.badge}</span>
-          </div>
-          <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
-            <span className="text-gradient">{t.features.title}</span>
-          </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            {t.features.subtitle}
-          </p>
-        </div>
+    <section id="features" className="py-24 bg-white bg-grid border-t-2 border-slate-900 relative overflow-hidden">
+      {/* Decorative Elements */}
+      <div className="absolute top-20 -left-12 w-48 h-48 border-4 border-slate-900 opacity-5 rotate-12 pointer-events-none" />
+      <div className="absolute bottom-40 right-10 w-32 h-32 bg-slate-100 border-4 border-slate-900 opacity-20 -rotate-3 pointer-events-none" />
 
-        {/* Features Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
-          {features.map((feature, index) => (
-            <div
-              key={feature.title}
-              className="group bg-gradient-card rounded-xl p-6 border border-border/50 hover-lift"
-              style={{ animationDelay: `${index * 0.1}s` }}
-            >
-              <div className={`w-12 h-12 rounded-lg bg-${feature.color}-500/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}>
-                <feature.icon className={`w-6 h-6 text-${feature.color}-400`} />
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="flex flex-col lg:flex-row gap-16">
+          {/* Left: Features Grid */}
+          <div className="lg:w-2/3">
+            <div className="mb-12">
+              <div className="inline-block px-3 py-1 bg-slate-900 text-white font-bold text-sm uppercase tracking-wider mb-4 shadow-hard-sm">
+                {t.features.badge}
               </div>
-              <h3 className="font-semibold text-foreground mb-2">{feature.title}</h3>
-              <p className="text-sm text-muted-foreground leading-relaxed">{feature.description}</p>
-            </div>
-          ))}
-        </div>
-
-        {/* Highlights Section */}
-        <div className="glass rounded-2xl p-8 border-glow">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-            <div>
-              <h3 className="text-2xl font-bold text-foreground mb-4">
-                <span className="text-gradient-gold">{t.features.builtFor}</span>
-              </h3>
-              <p className="text-muted-foreground mb-6">
-                {t.features.builtDesc}
+              <h2 className="text-4xl font-extrabold text-slate-900 mb-6 uppercase">
+                {t.features.title}
+              </h2>
+              <p className="text-lg text-slate-600 font-medium leading-relaxed border-l-4 border-slate-200 pl-4">
+                {t.features.subtitle}
               </p>
-              <div className="flex flex-wrap gap-3">
-                <span className="px-3 py-1 rounded-full bg-cyan-500/10 text-cyan-400 text-sm">Forge</span>
-                <span className="px-3 py-1 rounded-full bg-purple-500/10 text-purple-400 text-sm">NeoForge</span>
-                <span className="px-3 py-1 rounded-full bg-green-500/10 text-green-400 text-sm">1.20.1</span>
-                <span className="px-3 py-1 rounded-full bg-yellow-500/10 text-yellow-400 text-sm">1.21.1</span>
-              </div>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              {highlights.map((highlight, index) => (
-                <div key={index} className="flex items-start gap-2">
-                  <CheckCircle2 className="w-5 h-5 text-cyan-500 flex-shrink-0 mt-0.5" />
-                  <span className="text-sm text-muted-foreground">{highlight}</span>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {features.map((feature, index) => (
+                <div
+                  key={index}
+                  className="neo-card p-6 flex flex-col h-full bg-white hover:bg-slate-50"
+                  style={{ animationDelay: `${index * 100}ms` }}
+                >
+                  <div className="flex items-start justify-between mb-4">
+                    <div className="w-10 h-10 border-2 border-slate-900 bg-white flex items-center justify-center shadow-hard-sm">
+                      <feature.icon className="w-5 h-5 text-slate-900" />
+                    </div>
+                    <span className="text-xs font-mono font-bold text-slate-400">0{index + 1}</span>
+                  </div>
+                  <h3 className="font-bold text-lg text-slate-900 mb-2 uppercase tracking-tight">{feature.title}</h3>
+                  <p className="text-slate-600 text-sm leading-relaxed font-medium">{feature.description}</p>
                 </div>
               ))}
+            </div>
+          </div>
+
+          {/* Right: Technical Specs / Highlights */}
+          <div className="lg:w-1/3 space-y-8">
+            <div className="bg-white border-2 border-slate-900 shadow-hard p-8 sticky top-24">
+              <h3 className="text-xl font-extrabold text-slate-900 mb-6 uppercase flex items-center gap-2">
+                <Settings2 className="w-6 h-6" />
+                {t.features.builtFor}
+              </h3>
+
+              <div className="space-y-6">
+                <p className="text-slate-600 font-medium text-sm leading-relaxed">
+                  {t.features.builtDesc}
+                </p>
+
+                <div className="grid grid-cols-2 gap-3">
+                  {['Forge', 'NeoForge', '1.20.1', '1.21.1'].map((tag) => (
+                    <div key={tag} className="bg-slate-100 border-2 border-slate-900 px-3 py-2 text-center font-bold text-slate-900 text-sm uppercase shadow-hard-sm">
+                      {tag}
+                    </div>
+                  ))}
+                </div>
+
+                <div className="border-t-2 border-slate-900 pt-6 space-y-3">
+                  {highlights.map((highlight, index) => (
+                    <div key={index} className="flex items-start gap-3 group cursor-default">
+                      <div className="w-5 h-5 border-2 border-slate-900 bg-emerald-400 flex items-center justify-center flex-shrink-0 group-hover:bg-slate-900 transition-colors">
+                        <CheckCircle2 className="w-3 h-3 text-slate-900 group-hover:text-white" />
+                      </div>
+                      <span className="text-sm font-bold text-slate-700 group-hover:text-slate-900">{highlight}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
         </div>
