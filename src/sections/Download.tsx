@@ -10,6 +10,8 @@ import {
 } from 'lucide-react'
 import { useLanguage } from '@/context/LanguageContext'
 
+import curseforgeIcon from '@/assets/curseforge.jpg'
+
 const DownloadSection = () => {
   const { t, language } = useLanguage()
 
@@ -17,7 +19,7 @@ const DownloadSection = () => {
     {
       name: t.download.curseforge.name,
       description: t.download.curseforge.desc,
-      icon: 'https://static-cdn.jtvnw.net/jtv_user_pictures/cef31105-6a6e-4211-a356-8e39545fab9a-profile_image-300x300.png',
+      icon: curseforgeIcon,
       url: 'https://www.curseforge.com/minecraft/mc-mods/me-placement-tool',
       bg_soft: 'bg-orange-50',
       text: 'text-orange-600',
