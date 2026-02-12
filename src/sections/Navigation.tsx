@@ -100,64 +100,58 @@ const Navigation = () => {
           </button>
         </div>
 
-        {/* Mobile Menu Overlay */}
+        {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <>
-            <div
-              className="fixed inset-0 bg-black/50 backdrop-blur-sm z-30 md:hidden"
-              onClick={() => setIsMobileMenuOpen(false)}
-            />
-            <div className="fixed inset-x-0 top-16 bottom-0 bg-background z-40 md:hidden overflow-y-auto">
-              <div className="max-w-7xl mx-auto px-4 py-6">
-                <div className="flex flex-col gap-4">
-                  <button
-                    onClick={() => {
-                      toggleLanguage()
-                      setIsMobileMenuOpen(false)
-                    }}
-                    className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
+          <div className="absolute top-full left-0 right-0 md:hidden bg-background/95 backdrop-blur-xl border-b border-border/50 shadow-lg">
+            <div className="max-w-7xl mx-auto px-4 py-4">
+              <div className="flex flex-col gap-4">
+                <button
+                  onClick={() => {
+                    toggleLanguage()
+                    setIsMobileMenuOpen(false)
+                  }}
+                  className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
+                >
+                  <Languages className="w-4 h-4" />
+                  {language === 'en' ? '切换到中文' : 'Switch to English'}
+                </button>
+                {navLinks.map((link) => (
+                  <a
+                    key={link.href}
+                    href={link.href}
+                    className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                    onClick={() => setIsMobileMenuOpen(false)}
                   >
-                    <Languages className="w-4 h-4" />
-                    {language === 'en' ? '切换到中文' : 'Switch to English'}
-                  </button>
-                  {navLinks.map((link) => (
+                    {link.label}
+                  </a>
+                ))}
+                <div className="flex gap-3 pt-4 border-t border-border/50">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    asChild
+                    className="flex-1"
+                  >
                     <a
-                      key={link.href}
-                      href={link.href}
-                      className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-                      onClick={() => setIsMobileMenuOpen(false)}
+                      href="https://github.com/MOAKIEE/ME-Placement-Tool"
+                      target="_blank"
+                      rel="noopener noreferrer"
                     >
-                      {link.label}
+                      <Github className="w-4 h-4 mr-2" />
+                      {t.nav.github}
                     </a>
-                  ))}
-                  <div className="flex gap-3 pt-4 border-t border-border/50">
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      asChild
-                      className="flex-1"
-                    >
-                      <a
-                        href="https://github.com/MOAKIEE/ME-Placement-Tool"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <Github className="w-4 h-4 mr-2" />
-                        {t.nav.github}
-                      </a>
-                    </Button>
-                    <Button
-                      size="sm"
-                      asChild
-                      className="flex-1 bg-gradient-to-r from-cyan-500 to-cyan-600"
-                    >
-                      <a href="#download">{t.nav.download}</a>
-                    </Button>
-                  </div>
+                  </Button>
+                  <Button
+                    size="sm"
+                    asChild
+                    className="flex-1 bg-gradient-to-r from-cyan-500 to-cyan-600"
+                  >
+                    <a href="#download">{t.nav.download}</a>
+                  </Button>
                 </div>
               </div>
             </div>
-          </>
+          </div>
         )}
       </div>
     </nav>
